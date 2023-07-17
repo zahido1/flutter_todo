@@ -46,6 +46,16 @@ class AddTodoPage extends ConsumerWidget {
               onChanged: (value) {
                 ref.watch(controllerProvider.notifier).state = value;
               },
+              onSubmitted: (value) {
+                ref.watch(myTodoNotifierProvider.notifier).addTodo(
+                      TodoModel(
+                        id: ref.watch(myTodoNotifierProvider).length + 1,
+                        description: controller.text,
+                        checked: false,
+                      ),
+                    );
+                Navigator.of(context).pop();
+              },
             ),
             const SizedBox(height: 16),
             Row(
